@@ -31,6 +31,47 @@ def _find_project_dir() -> Path:
     return cwd
 
 
+def _agent_instructions() -> str:
+    """Return universal agent instructions for using the research CLI."""
+    return """# Aura Research Knowledge Base
+
+This project uses **Aura Research** (`pip install aura-research`) as a CLI tool for querying and managing a compiled knowledge base.
+
+## Available Shell Commands
+
+The `research` command is installed on the system PATH. Execute it directly as a shell command. Do NOT search for it in the file system — it is a pip-installed CLI tool.
+
+### Query the knowledge base
+```bash
+research query "your question here"
+```
+This searches the compiled `.aura` archive and returns an AI-synthesized answer using only relevant context. **Always prefer this for research questions.**
+
+### Search for keywords
+```bash
+research search "keyword"
+```
+
+### Show project status
+```bash
+research status
+```
+
+### Memory commands
+```bash
+research memory show              # Full overview of all memory tiers
+research memory show --tier fact   # Filter by tier
+research memory query "topic"      # Search memory
+research memory write fact "..."   # Write to memory
+```
+
+## Important
+- `research` is a **shell command on PATH**, not a file. Do not look for it.
+- When asked a research question, run `research query "..."` instead of reading wiki `.md` files manually.
+- The wiki is in the `wiki/` directory if you need to browse articles directly.
+"""
+
+
 def cmd_init(args):
     """Initialize a new research knowledge base project."""
     from .config import ResearchConfig
@@ -50,10 +91,27 @@ def cmd_init(args):
     config = ResearchConfig(project_dir)
     config.save_default()
 
+    # Generate agent instruction files
+    instructions = _agent_instructions()
+
+    # Universal (any agent that reads AGENTS.md)
+    (project_dir / "AGENTS.md").write_text(instructions, encoding="utf-8")
+
+    # Gemini CLI
+    (project_dir / "GEMINI.md").write_text(instructions, encoding="utf-8")
+
+    # Claude Code
+    claude_dir = project_dir / ".claude"
+    claude_dir.mkdir(exist_ok=True)
+    (project_dir / "CLAUDE.md").write_text(instructions, encoding="utf-8")
+
+    # Codex / OpenClaw (reads AGENTS.md, already created above)
+
     print(f"✅ Initialized research project: {project_dir}")
     print(f"   📁 raw/       — drop your source documents here")
     print(f"   📁 wiki/      — compiled wiki (auto-generated)")
     print(f"   ⚙️  research.yaml — configuration")
+    print(f"   🤖 AGENTS.md  — agent instructions (Gemini, Claude, Codex, OpenClaw)")
     print(f"\nNext steps:")
     print(f"   1. Copy your research documents into raw/")
     print(f"   2. Set your LLM API key (e.g., export OPENAI_API_KEY=sk-...)")
