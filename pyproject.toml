@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aura-research"
+version = "0.1.0"
+description = "LLM-powered research knowledge base — compile raw documents into a living wiki"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Rta Labs", email = "info@rtalabs.org"}
+]
+keywords = ["ai", "research", "knowledge-base", "wiki", "rag", "llm", "aura", "agent-memory"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "auralith-aura>=0.2.3",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0.0"]
+anthropic = ["anthropic>=0.20.0"]
+gemini = ["google-generativeai>=0.5.0"]
+search = ["duckduckgo-search>=5.0.0"]
+watch = ["watchdog>=3.0.0"]
+all = [
+    "aura-research[openai,anthropic,gemini,search,watch]",
+]
+
+[project.scripts]
+research = "research.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Rtalabs-ai/aura-research"
+Repository = "https://github.com/Rtalabs-ai/aura-research.git"
+Issues = "https://github.com/Rtalabs-ai/aura-research/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
