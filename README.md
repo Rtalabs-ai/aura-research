@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Rtalabs-ai/aura-core/main/assets/rta-labs-logo.png" alt="Rta Labs Logo" width="120" />
+  <img src="https://github.com/Rtalabs-ai/aura-core/raw/main/logo.png" alt="Rta Labs Logo" width="120" />
 </p>
 
 <h1 align="center">Aura Research</h1>
