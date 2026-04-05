@@ -120,9 +120,9 @@ Raw Documents  ──→  Aura Core (.aura)  ──→  LLM Compiler  ──→ 
 Supports **OpenAI**, **Anthropic**, and **Google Gemini**. Install the one you prefer:
 
 ```bash
-pip install 'aura-research[openai]'      # GPT-4o (default)
-pip install 'aura-research[anthropic]'    # Claude 3.5 Sonnet
-pip install 'aura-research[gemini]'       # Gemini 2.0 Flash
+pip install 'aura-research[openai]'       # OpenAI models (default)
+pip install 'aura-research[anthropic]'    # Anthropic models
+pip install 'aura-research[gemini]'       # Google Gemini models
 pip install 'aura-research[all]'          # Everything
 ```
 
@@ -131,7 +131,7 @@ Configure via environment variables or `research.yaml`:
 ```yaml
 llm:
   provider: openai          # openai, anthropic, or gemini
-  model: gpt-4o             # override default model
+  model: gpt-5.4-instant    # override default model
   temperature: 0.3
 
 memory:
