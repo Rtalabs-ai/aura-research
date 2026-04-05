@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/aura-research/"><img src="https://img.shields.io/pypi/v/aura-research" alt="PyPI" /></a>
+  <a href="https://pypi.org/project/aura-research/"><img src="https://img.shields.io/pypi/v/aura-research?color=blue" alt="PyPI" /></a>
   <a href="https://github.com/Rtalabs-ai/aura-research/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" /></a>
   <a href="https://github.com/Rtalabs-ai/aura-core"><img src="https://img.shields.io/badge/powered%20by-Aura%20Core-purple" alt="Powered by Aura Core" /></a>
 </p>
